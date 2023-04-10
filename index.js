@@ -1,28 +1,18 @@
-// Подключаем API.
-const TelegramBot = require('node-telegram-bot-api');
-
+const { Telegraf } = require('telegraf')
 // Подключаем токен бота.
 const token = '6244052252:AAFR9SF4jiOZkGvM5X2wbZ07XjuNoBL0OXI';
 
-// Запуск бота.
-const bot = new TelegramBot(token, {polling: true});
+const { GONDON_BOT, CALL_BROTHER, QUOTES } = require('./constants')
+const { QuoteRandom } = require('./quote_random')
 
-// Реакция на пидорбота в штанах.
-bot.on('message', (msg)=> {
-    const chatId = msg.chat.id;
-    // Вычисляем пидорбота
-    const isBotInPants = msg.from.username === "InYourPantsBot"
-    if (msg.text === 'бот') {
-        bot.sendMessage(chatId, 'Каждый выбирает сам — быть частью волчьей стаи или стать для них кормом.')
-    }
-
-    if (isBotInPants) {
-        bot.sendMessage(chatId, 'Слышь, браток, не мороси')
-    }
-
-    //Триггер на пацанские цитаты.
-    const isDude = msg.text.includes('пацан')
-    if (isDude) {
-        bot.sendMessage(chatId, 'Я — молодой, дерзкий и дикий, словно волк.')
+const bot = new Telegraf(token)
+bot.hears(CALL_BROTHER, (ctx) => ctx.reply(QUOTES[0]))
+bot.on('text', (ctx) => {
+    const chatId = ctx.message.chat.id
+    const isShowdowns = ctx.message.reply_to_message?.from.username === GONDON_BOT
+    
+    if(isShowdowns) {
+        ctx.reply('Слышь, браток, не мороси.')
     }
 })
+bot.launch()
