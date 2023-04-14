@@ -64,18 +64,23 @@ const FIFTH = [
     'вопреки всем',
     'за маму',
     'за пацанов',
+    'за двор',
     'меня',
     'как волк',
     'по-братски',
     'с друзьями',
     'пацанов',
     'тебя',
+    'любовь',
     ' '
 ]
+const random = (array) => Math.floor(Math.random() * array.length)
 
 const selectWord = (array) => {
-    const random = Math.floor(Math.random() * array.length)
-    return `${array[random]} `
+    const randomWord = random(array)
+    const word = array[randomWord] !== ' ' ? `${array[randomWord]} ` : ''
+
+    return word
 }
 
 const QuoteRandom = () => {
@@ -83,4 +88,4 @@ const QuoteRandom = () => {
     return message
 }
 
-module.exports = { QuoteRandom }
+module.exports = { QuoteRandom, random }
