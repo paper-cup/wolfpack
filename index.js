@@ -6,6 +6,8 @@ const token = '6244052252:AAFR9SF4jiOZkGvM5X2wbZ07XjuNoBL0OXI';
 const { GONDON_BOT, CALL_BROTHER, QUOTES, HELP } = require('./constants')
 const { QuoteRandom, random } = require('./quote_random')
 
+
+module.exports.bot = async (event) => {
 // Запускаем бота.
 const bot = new Telegraf(token)
 
@@ -39,3 +41,4 @@ bot.on('text', (ctx) => {
 
 
 bot.launch()
+}
