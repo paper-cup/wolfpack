@@ -11,10 +11,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@octokit/core": "^4.2.0",
     "telegraf": "3.38.0"
   },
   "devDependencies": {
-    "nodemon": "^2.0.22"
+    "nodemon": "2.0.22"
   }
 }
